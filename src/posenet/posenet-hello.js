@@ -10,6 +10,7 @@ const imageStyles = {
 };
 
 export function PosenetHello() {
+  const imageEl = React.useRef(null);
   async function estimatePoseOnImage(imageElement) {
     const net = await posenet.load();
 
@@ -20,12 +21,10 @@ export function PosenetHello() {
   }
 
   React.useEffect(() => {
-    const imageElement = document.getElementById("sample-image");
-
-    estimatePoseOnImage(imageElement).then((pose) => {
+    estimatePoseOnImage(imageEl.current).then((pose) => {
       console.log(pose);
     });
   }, []);
 
-  return <img id="sample-image" style={imageStyles} alt="Sample" src={image} />;
+  return <img ref={imageEl} style={imageStyles} alt="Sample" src={image} />;
 }
