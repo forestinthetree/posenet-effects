@@ -7,7 +7,7 @@ export function Sketch({
   height,
   // By default, Paper.js renders into a hi-res Canvas on Hi-DPI (Retina) screens to match their native resolution, and handles all the additional transformations for you transparently
   hiDPI = "on",
-  onDraw = () => {},
+  onInit = () => {},
 }) {
   const resize = !width && !height;
   const canvasRef = React.useRef(null);
@@ -26,8 +26,8 @@ export function Sketch({
       return;
     }
 
-    onDraw(scope);
-  }, [onDraw, scope]);
+    onInit(scope);
+  }, [onInit, scope]);
 
   return (
     <canvas
