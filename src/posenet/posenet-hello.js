@@ -16,5 +16,9 @@ export function PosenetHello({ width, height }) {
 
   console.log({ pose });
 
-  return <img ref={imageRef} style={imageStyles} alt="Sample" src={image} />;
+  return (
+    <div style={{ display: "none" }}>
+      <img ref={imageRef} style={imageStyles} alt="Sample" src={image} />
+    </div>
+  );
 }
