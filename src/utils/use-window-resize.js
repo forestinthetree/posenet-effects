@@ -1,10 +1,10 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
 export function useWindowResize() {
-  const [width, setWidth] = React.useState(0);
-  const [height, setHeight] = React.useState(0);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const updateWindowDimensions = () => {
       setWidth(window.innerWidth);
       setHeight(window.innerHeight);

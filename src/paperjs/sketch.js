@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import { usePaperScope } from "./utils";
 
@@ -10,7 +10,7 @@ export function Sketch({
   onInit = () => {},
 }) {
   const resize = !width && !height;
-  const canvasRef = React.useRef(null);
+  const canvasRef = useRef(null);
   const settings = {
     insertItems: true,
   };
@@ -21,7 +21,7 @@ export function Sketch({
     settings,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!scope) {
       return;
     }

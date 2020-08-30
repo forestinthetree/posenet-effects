@@ -1,10 +1,10 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { PaperScope, Size } from "paper";
 
 export function usePaperScope({ canvasRef, width, height, settings }) {
-  const [scope, setScope] = React.useState();
+  const [scope, setScope] = useState();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (scope) {
       return;
     }

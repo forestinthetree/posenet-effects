@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
 import "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
@@ -13,9 +13,9 @@ async function estimatePoseOnImage(imageElement) {
 }
 
 export function usePosenet({ imageRef }) {
-  const [pose, setPose] = React.useState();
+  const [pose, setPose] = useState();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!imageRef.current) {
       return;
     }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
 import { Point, Path, Rectangle, Raster, PointText } from "paper";
 
@@ -17,10 +17,10 @@ export function SketchPose() {
     height: `${height}px`,
   };
 
-  const imageRef = React.useRef(null);
+  const imageRef = useRef(null);
   const { pose } = usePosenet({ imageRef });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!pose) {
       return;
     }
