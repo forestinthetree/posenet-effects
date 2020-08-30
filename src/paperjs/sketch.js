@@ -7,6 +7,7 @@ export function Sketch({
   height,
   // By default, Paper.js renders into a hi-res Canvas on Hi-DPI (Retina) screens to match their native resolution, and handles all the additional transformations for you transparently
   hiDPI = "on",
+  onDraw = () => {},
 }) {
   const resize = !width && !height;
   const canvasRef = React.useRef(null);
@@ -24,16 +25,9 @@ export function Sketch({
     if (!scope) {
       return;
     }
-    const circle = new scope.Path.Circle({
-      center: scope.view.center,
-      radius: 35,
-      fillColor: "red",
-    });
 
-    scope.view.onResize = function (event) {
-      circle.position = scope.view.center;
-    };
-  }, [scope]);
+    onDraw(scope);
+  }, [onDraw, scope]);
 
   return (
     <canvas
