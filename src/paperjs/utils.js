@@ -20,7 +20,9 @@ export function usePaperScope({ canvasRef, width, height, settings }) {
       }
     }
 
-    paperScope.view.viewSize = new Size(width, height);
+    if (width && height) {
+      paperScope.view.viewSize = new Size(width, height);
+    }
 
     setScope(paperScope);
   }, [canvasRef, height, scope, settings, width]);
