@@ -1,31 +1,20 @@
 import React from "react";
-import "@tensorflow/tfjs";
-import * as posenet from "@tensorflow-models/posenet";
 
 import image from "./sample-image.jpg";
 
-async function estimatePoseOnImage(imageElement) {
-  const net = await posenet.load();
-
-  const pose = await net.estimateSinglePose(imageElement, {
-    flipHorizontal: false,
-  });
-  return pose;
-}
+import { usePosenet } from "./use-posenet";
 
 export function PosenetHello({ width, height }) {
-  const imageEl = React.useRef(null);
+  const imageRef = React.useRef(null);
   const imageStyles = {
     marginTop: "20px",
     width: `${width}px`,
     height: `${height}px`,
   };
 
-  React.useEffect(() => {
-    estimatePoseOnImage(imageEl.current).then((pose) => {
-      console.log(pose);
-    });
-  }, []);
+  const { pose } = usePosenet({ imageRef });
 
-  return <img ref={imageEl} style={imageStyles} alt="Sample" src={image} />;
+  console.log({ pose });
+
+  return <img ref={imageRef} style={imageStyles} alt="Sample" src={image} />;
 }
