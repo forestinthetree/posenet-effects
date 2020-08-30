@@ -1,17 +1,29 @@
 import React from "react";
-import { PaperScope } from "paper";
+import { PaperScope, Size } from "paper";
 
-export function usePaperScope({ canvasRef }) {
+export function usePaperScope({ canvasRef, width, height, settings }) {
   const [scope, setScope] = React.useState();
 
   React.useEffect(() => {
+    if (scope) {
+      return;
+    }
     if (!canvasRef.current) {
       return;
     }
     const paperScope = new PaperScope();
     paperScope.setup(canvasRef.current);
+
+    if (settings) {
+      for (let key of Object.keys(settings)) {
+        paperScope.settings[key] = settings[key];
+      }
+    }
+
+    paperScope.view.viewSize = new Size(width, height);
+
     setScope(paperScope);
-  }, [canvasRef]);
+  }, [canvasRef, height, scope, settings, width]);
 
   return {
     scope,

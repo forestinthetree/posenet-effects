@@ -4,11 +4,6 @@ import * as posenet from "@tensorflow-models/posenet";
 
 import image from "./sample-image.jpg";
 
-const imageStyles = {
-  marginTop: "20px",
-  width: "500px",
-};
-
 async function estimatePoseOnImage(imageElement) {
   const net = await posenet.load();
 
@@ -18,8 +13,13 @@ async function estimatePoseOnImage(imageElement) {
   return pose;
 }
 
-export function PosenetHello() {
+export function PosenetHello({ width, height }) {
   const imageEl = React.useRef(null);
+  const imageStyles = {
+    marginTop: "20px",
+    width: `${width}px`,
+    height: `${height}px`,
+  };
 
   React.useEffect(() => {
     estimatePoseOnImage(imageEl.current).then((pose) => {
