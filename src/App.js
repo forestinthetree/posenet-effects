@@ -1,13 +1,11 @@
 import React from "react";
 
-import { SketchPose } from "./paperjs/sketch-pose";
+import { useWebsocketPose } from "./paperjs/use-websocket-pose";
 
 function App() {
-  return (
-    <div className="App">
-      <SketchPose />
-    </div>
-  );
+  useWebsocketPose();
+
+  return <div className="App"></div>;
 }
 
 export default App;

@@ -21,6 +21,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
         npm start
 
+Use in conjunction with [posenet-for-installations](https://github.com/oveddan/posenet-for-installations).
+
 ## Deployment
 
 Deployed to https://posenet-effects.netlify.app/, when pushed to GitHub.
