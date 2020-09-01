@@ -1,11 +1,11 @@
+/*global paper:true */
 import React, { useRef, useEffect } from "react";
 
-import { Point, Path, Rectangle, Raster, PointText } from "paper";
-
-import { Sketch } from "./sketch";
 import { usePosenet } from "../posenet/use-posenet";
 
 import image from "../images/sample-image.jpg";
+
+const { Point, Path, Rectangle, Raster, PointText } = paper;
 
 export function SketchPose() {
   const imageId = "sample-image";
@@ -24,6 +24,14 @@ export function SketchPose() {
     if (!pose) {
       return;
     }
+
+    // Draw image on the canvas
+    const image = new Raster(imageId);
+
+    const rectArgs = [0, 0, width, height];
+    const rectangle = new Rectangle(...rectArgs);
+    image.fitBounds(rectangle);
+    image.opacity = 0.1;
 
     // Draw pose keypoints on the canvas
     const { keypoints } = pose;
@@ -52,16 +60,6 @@ export function SketchPose() {
     });
   }, [pose]);
 
-  const onInit = () => {
-    // Draw image on the canvas
-    const image = new Raster(imageId);
-
-    const rectArgs = [0, 0, width, height];
-    const rectangle = new Rectangle(...rectArgs);
-    image.fitBounds(rectangle);
-    image.opacity = 0.1;
-  };
-
   return (
     <>
       <div style={{ display: "none" }}>
@@ -73,7 +71,6 @@ export function SketchPose() {
           src={image}
         />
       </div>
-      <Sketch onInit={onInit} />
     </>
   );
 }
