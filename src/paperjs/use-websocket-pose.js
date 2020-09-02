@@ -14,9 +14,9 @@ const posesRenderer = createPosesRenderer({
   store: posePointsStore,
 });
 
-export function useWebsocketPose() {
+export function useWebsocketPose({ url }) {
   useWebsocket({
-    url: "ws://localhost:8080",
+    url: `ws://${url}`,
     onOpen: () => {
       console.log("Websocket open");
     },
